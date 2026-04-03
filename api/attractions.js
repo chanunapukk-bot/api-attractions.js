@@ -13,17 +13,10 @@ export default async function handler(req, res) {
       }
     });
 
-    // 🔥 test query ง่ายๆ ก่อน
-    const [rows] = await connection.execute('SELECT 1');
+    const [rows] = await connection.execute('SELECT * FROM attractions');
 
-    res.status(200).json({
-      message: "Connected OK",
-      data: rows
-    });
-
+    res.status(200).json(rows);
   } catch (error) {
-    res.status(500).json({
-      error: error.message
-    });
+    res.status(500).json({ error: error.message });
   }
 }
